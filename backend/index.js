@@ -5,6 +5,7 @@ import memesRouter from "./routes/memesRouter.js";
 
 import { initiateDBConnect } from "./common/mongoConnection.js";
 import { logger } from "./middlewares/logger.js";
+import cookieParser from "cookie-parser";
 
 const app = express();
 
@@ -14,6 +15,7 @@ initiateDBConnect();
 // app configs
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 app.use(logger);
 
