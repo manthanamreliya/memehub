@@ -6,6 +6,7 @@ import memesRouter from "./routes/memesRouter.js";
 import { initiateDBConnect } from "./common/mongoConnection.js";
 import { logger } from "./middlewares/logger.js";
 import cookieParser from "cookie-parser";
+import userRouter from "./routes/userRouter.js";
 
 const app = express();
 
@@ -20,8 +21,8 @@ app.use(cookieParser());
 app.use(logger);
 
 // Routes
-
 app.use("/memes", memesRouter);
+app.use("/user", userRouter);
 
 app.listen(3030, () => {
 	console.info("Express.js server is running on port 3030");
