@@ -2,6 +2,12 @@ import cloudinary from "../common/cloudinary.js";
 import Meme from "../models/meme.js";
 import User from "../models/user.js";
 
+
+/**
+ * This function will return all memes from the MongoDB database
+ * @param {import("express").Request} req - The request object
+ * @param {import("express").Response} res - The response object
+ */
 export const getMemes = async (req, res) => {
 	try {
 		const memes = await Meme.find()
@@ -13,6 +19,16 @@ export const getMemes = async (req, res) => {
 		res.status(404).json({ message: error.message });
 	}
 };
+
+/**
+ * This function will create a new meme
+ * @param {import("express").Request} req - The request object
+ * @param {import("express").Response} res - The response object
+ *
+ * The request object should contain the following fields:
+ * - title: The title of the meme
+ * - file: The image file of the meme
+ */
 
 export const createMeme = async (req, res) => {
 	const { title } = req.body;
@@ -49,6 +65,14 @@ export const createMeme = async (req, res) => {
 	}
 };
 
+/**
+ * Toggle like on a meme for a given user
+ * @param {import("express").Request} req
+ * @param {import("express").Response} res
+ *
+ * The request object should contain the following fields:
+ * - memeId: The ID of the meme
+ */
 export const toggleLike = async (req, res) => {
 	const { memeId } = req.body;
 	const userId = req.user._id;
@@ -76,6 +100,14 @@ export const toggleLike = async (req, res) => {
 	}
 };
 
+/**
+ * Get a meme having a specific ID. Typically used for viewing a single meme.
+ * @param {import("express").Request} req
+ * @param {import("express").Response} res
+ *
+ * The request object should contain the following fields:
+ * - memeId: The ID of the meme
+ */
 export const getMemeById = async (req, res) => {
 	if (!req.params.memeId) {
 		return res.status(400).json({ message: "Meme ID not set" });
@@ -89,6 +121,15 @@ export const getMemeById = async (req, res) => {
 	}
 	return res.status(200).json(meme);
 };
+
+/**
+ * Delete a meme having a specific ID
+ * @param {import("express").Request} req
+ * @param {import("express").Response} res
+ *
+ * The request object should contain the following fields:
+ * - memeId: The ID of the meme
+ */
 
 export const deleteMeme = async (req, res) => {
 	if (!req.memeId) {
