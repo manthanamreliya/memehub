@@ -16,6 +16,7 @@
 }
 
 .meme-card {
+  cursor: pointer;
   width: 300px;
   padding: 20px;
 }

@@ -41,10 +41,6 @@ h1 {
   object-fit: cover;
 }
 
-.meme-info {
-  padding: 15px;
-}
-
 .meme-info h2 {
   margin: 0 0 10px;
   font-size: 18px;
@@ -52,7 +48,7 @@ h1 {
 }
 
 .meme-info p {
-  margin: 5px 0;
+  /* margin: 5px 0; */
   font-size: 14px;
   color: #666;
 }
