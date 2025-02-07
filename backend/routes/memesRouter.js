@@ -1,14 +1,17 @@
 import * as express from "express";
 import {
-	createMeme,
-	deleteMeme,
-	getMemeById,
-	getMemes,
-	toggleLike,
+  createMeme,
+  deleteMeme,
+  getMemeById,
+  getMemes,
+  toggleLike,
 } from "../controller/memeController.js";
 import { authenticate } from "../middlewares/authentication.js";
+import multer from "multer";
 
 const memesRouter = express.Router();
+
+const upload = multer({ dest: "uploads/" });
 
 /**
  * This route will be available at http://localhost:3000/memes/getAllMemes
@@ -18,7 +21,12 @@ memesRouter.get("/getAllMemes", getMemes);
 
 memesRouter.get("/getMemeById/:id", getMemeById);
 
-memesRouter.post("/createMeme", authenticate, createMeme);
+memesRouter.post(
+  "/createMeme",
+  authenticate,
+  upload.single("file"),
+  createMeme
+);
 
 memesRouter.post("/toggleLike", authenticate, toggleLike);
 

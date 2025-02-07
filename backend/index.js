@@ -1,5 +1,5 @@
 import express from "express";
-
+import cors from "cors";
 import "dotenv/config";
 import memesRouter from "./routes/memesRouter.js";
 
@@ -13,6 +13,14 @@ const app = express();
 // Connect to the database
 initiateDBConnect();
 
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
+
 // app configs
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -25,5 +33,5 @@ app.use("/memes", memesRouter);
 app.use("/user", userRouter);
 
 app.listen(3030, () => {
-	console.info("Express.js server is running on port 3030");
+  console.info("Express.js server is running on port 3030");
 });

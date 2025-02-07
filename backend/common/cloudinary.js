@@ -1,10 +1,12 @@
-import * as cloudinaryRaw from "cloudinary";
+import { v2 as cloudinary } from "cloudinary";
+import dotenv from "dotenv";
 
-const cloudinary = cloudinaryRaw.v2.config({
-	cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-	api_key: process.env.CLOUDINARY_API_KEY,
-	api_secret: process.env.CLOUDINARY_API_SECRET,
+dotenv.config(); // Load environment variables
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-// Return the cloudinary object with the configuration
 export default cloudinary;
