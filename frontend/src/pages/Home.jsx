@@ -39,10 +39,12 @@ export default function HomePage() {
   return (
     <div className="meme-gallery">
       <h1>Meme Gallery</h1>
-      <Link to={"/upload"}>Upload Meme</Link>
+      <Link to={"/upload"}>
+        <button>Upload Meme</button>
+      </Link>
       <div className="meme-grid">
         {memes.map((meme) => (
-          <div key={meme.id} className="meme-card">
+          <Link key={meme._id} className="meme-card" to={`/meme/${meme._id}`}>
             <img
               src={meme.imageUrl || "/placeholder.svg"}
               alt={meme.title}
@@ -50,12 +52,11 @@ export default function HomePage() {
             />
             <div className="meme-info">
               <h2>{meme.title}</h2>
-              <p>Author: {meme.author.name}</p>
               <p>Likes: {meme.likes.length}</p>
-              <p>Comments: {meme.comments.length}</p>
-              <p>Created: {new Date(meme.createdAt).toLocaleDateString()}</p>
+              {/* <p>Comments: {meme.comments.length}</p> */}
+              {/* <p>Created: {new Date(meme.createdAt).toLocaleDateString()}</p> */}
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

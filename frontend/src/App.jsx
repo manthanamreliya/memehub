@@ -4,6 +4,7 @@ import HomePage from "./pages/Home";
 import UploadPage from "./pages/Upload";
 import Login from "./pages/Login";
 import Signup from "./pages/SignUp";
+import MemePost from "./pages/MemePage";
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
         <Route path="/upload" element={<UploadPage />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/meme/:id" element={<MemePost />} />
       </Routes>
     </BrowserRouter>
   );

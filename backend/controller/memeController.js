@@ -107,10 +107,10 @@ export const toggleLike = async (req, res) => {
  * - memeId: The ID of the meme
  */
 export const getMemeById = async (req, res) => {
-  if (!req.params.memeId) {
+  if (!req.params.id) {
     return res.status(400).json({ message: "Meme ID not set" });
   }
-  const meme = await Meme.findById(req.memeId)
+  const meme = await Meme.findById(req.params.id)
     .populate("author")
     .populate("comments")
     .lean();
