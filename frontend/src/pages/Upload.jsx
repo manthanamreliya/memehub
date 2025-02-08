@@ -33,6 +33,7 @@ export default function UploadPage() {
           method: "POST",
           body: formData,
           credentials: "include",
+        
         }
       );
 

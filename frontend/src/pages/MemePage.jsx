@@ -16,6 +16,7 @@ export default function MemePost() {
       })
       .then((data) => {
         setMeme(data);
+        console.log(data)
         setLoading(false);
       })
       .catch((error) => {
@@ -23,6 +24,20 @@ export default function MemePost() {
         setLoading(false);
       });
   }, [id]);
+
+  const handleLike = async () => {
+    const formData = new FormData()
+
+    console.log(meme._id);
+    
+    formData.append("memeId", meme._id);
+    await fetch(`${import.meta.env.VITE_BACKEND_URL}/memes/toggleLike`, {
+      method: "POST", 
+      body: JSON.stringify({memeId:meme._id}),
+      credentials: "include",
+      headers:{"Content-Type":"application/json"}
+    })
+  }
 
   if (loading) return <div className="loading">Loading meme...</div>;
   if (error) return <div className="error">Error: {error}</div>;
@@ -36,6 +51,7 @@ export default function MemePost() {
         <img src={meme.imageUrl} alt={meme.title} className="meme-image" />
         <div className="meme-info">
           <h2>{meme.title}</h2>
+          <button onClick={handleLike}>Like</button>
           <p>Likes: {meme.likes.length}</p>
           <p>Comments: {meme.comments.length}</p>
           <p>Created: {new Date(meme.createdAt).toLocaleDateString()}</p>

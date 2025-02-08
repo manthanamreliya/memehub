@@ -18,11 +18,20 @@ app.use(
     origin: "http://localhost:5173",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
+    allowedHeaders: ["Content-Type"]
   })
 );
 
 // app configs
 app.use(express.json());
+
+app.use(
+  (req, res, next) =>{
+    console.log(req.body)
+    next()
+  }
+)
+
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 

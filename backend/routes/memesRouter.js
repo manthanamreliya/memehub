@@ -28,7 +28,7 @@ memesRouter.post(
   createMeme
 );
 
-memesRouter.post("/toggleLike", authenticate, toggleLike);
+memesRouter.post("/toggleLike", authenticate,toggleLike);
 
 // TODO: Add a route to add a comment to a meme
 // memesRouter.post("/addComment", authenticate, addComment);

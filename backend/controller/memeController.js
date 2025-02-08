@@ -6,6 +6,7 @@ import User from "../models/user.js";
  * This function will return all memes from the MongoDB database
  * @param {import("express").Request} req - The request object
  * @param {import("express").Response} res - The response object
+ * Method: GET
  */
 export const getMemes = async (req, res) => {
   try {
@@ -27,6 +28,8 @@ export const getMemes = async (req, res) => {
  * The request object should contain the following fields:
  * - title: The title of the meme
  * - file: The image file of the meme
+ * 
+ * Method: POST
  */
 
 export const createMeme = async (req, res) => {
@@ -70,8 +73,11 @@ export const createMeme = async (req, res) => {
  *
  * The request object should contain the following fields:
  * - memeId: The ID of the meme
+ * 
+ * Method: POST
  */
 export const toggleLike = async (req, res) => {
+  console.log(req.body)
   const { memeId } = req.body;
   const userId = req.user._id;
   if (!memeId || !userId) {
@@ -105,6 +111,8 @@ export const toggleLike = async (req, res) => {
  *
  * The request object should contain the following fields:
  * - memeId: The ID of the meme
+ * 
+ * Method: GET
  */
 export const getMemeById = async (req, res) => {
   if (!req.params.id) {
@@ -127,6 +135,8 @@ export const getMemeById = async (req, res) => {
  *
  * The request object should contain the following fields:
  * - memeId: The ID of the meme
+ * 
+ * Method: DEL
  */
 
 export const deleteMeme = async (req, res) => {
