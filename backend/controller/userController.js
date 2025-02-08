@@ -17,7 +17,7 @@ export const addUser = async (req, res) => {
 
 	const user = await User.create({
 		username,
-		password
+		password,
 	});
 
 	user.save();
